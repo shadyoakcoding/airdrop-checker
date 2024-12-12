@@ -1,0 +1,19 @@
+{
+  "name": "odos-checker",
+  "version": "1.0.0",
+  "description": "A lil sumn sumn to check if a list of wallet addresses qualify for the odos airdrop",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shadyoakcoding/odos-checker.git"
+  },
+  "author": "shadyoakcoding",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shadyoakcoding/odos-checker/issues"
+  },
+  "homepage": "https://github.com/shadyoakcoding/odos-checker#readme"
+}
