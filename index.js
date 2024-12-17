@@ -15,7 +15,7 @@ async function checkMultipleWallets() {
         const tokens = await checkPenguAirdrop(wallet);
         totalTokens += tokens; // Adding the amount of tokens for this wallet to the total.
         results.push(`${wallet},${tokens}`);
-        await new Promise((resolve) => setTimeout(resolve, 100)); // Wait for 0.1 seconds before the next request
+        await new Promise((resolve) => setTimeout(resolve, 500)); // Wait for 0.1 seconds before the next request
     }
     results.push(`Total Tokens:,${totalTokens}`); // Add total tokens to the CSV
     fs.writeFileSync(outputFile, results.join("\r\n")); // Write results to CSV
