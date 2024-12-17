@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/shadyoakcoding/odos-checker/issues"
   },
-  "homepage": "https://github.com/shadyoakcoding/odos-checker#readme"
+  "homepage": "https://github.com/shadyoakcoding/odos-checker#readme",
+  "dependencies": {
+    "tlsclientwrapper": "^2.0.5"
+  }
 }

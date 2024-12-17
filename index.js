@@ -9,14 +9,18 @@ async function checkMultipleWallets() {
     const outputFile = path.resolve(__dirname, 'results.csv');
     const walletAddresses = fs.readFileSync(inputFile, 'utf8').trim().split(/\r?\n/); // Read wallet addresses from wallets.txt
     const results = ['wallet,tokens']; // CSV header
-    let totalTokens = 0; // Keeping track of all the tokens received.
-    for (const wallet of walletAddresses) { // Checking all of the wallets.
+    const walletResults = await Promise.all(walletAddresses.map(async (wallet) => {
         console.log(`Checking airdrop for: ${wallet}`);
         const tokens = await checkPenguAirdrop(wallet);
-        totalTokens += tokens; // Adding the amount of tokens for this wallet to the total.
-        results.push(`${wallet},${tokens}`);
-        await new Promise((resolve) => setTimeout(resolve, 500)); // Wait for 0.1 seconds before the next request
-    }
+        return { wallet, tokens }; // Return results for each wallet
+    }));
+
+    // Process results
+    let totalTokens = 0;
+    walletResults.forEach(({ wallet, tokens }) => {
+        totalTokens += tokens; // Add tokens to the total
+        results.push(`${wallet},${tokens}`); // Add wallet and tokens to results
+    });
     results.push(`Total Tokens:,${totalTokens}`); // Add total tokens to the CSV
     fs.writeFileSync(outputFile, results.join("\r\n")); // Write results to CSV
     console.log(`Results written to ${outputFile}`);
